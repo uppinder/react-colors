@@ -115,6 +115,7 @@
 }
 
 .copy-msg p {
+    text-transform: lowercase;
     font-size: 2rem;
     font-weight: 100;
 }

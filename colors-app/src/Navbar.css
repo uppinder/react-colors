@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 6vh;
+    width: 100%;
 }
 
 .logo {
@@ -46,4 +47,8 @@
     width: 13px;
     height: 13px;
     margin-top: -3px;
+}
+
+.select-container {
+    justify-self: flex-end;
 }
