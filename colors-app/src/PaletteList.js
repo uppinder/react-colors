@@ -41,7 +41,7 @@ class PaletteList extends Component {
                         <h1>React Colors</h1>
                      </nav>
                      <div className={classes.palettes}>
-                        {palettes.map(palette => <MiniPalette {...palette} />)}
+                        {palettes.map(palette => <MiniPalette key={palette.id} {...palette} />)}
                      </div>
                 </div>
             </div>
