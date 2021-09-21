@@ -3,8 +3,56 @@ import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import { Select, MenuItem, Snackbar, IconButton} from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
 import 'rc-slider/assets/index.css';
-import './Navbar.css'; 
+
+const styles = {
+    Navbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        height: '7vh',
+        width: '100%',
+    },
+    logo: {
+        backgroundColor: '#eceff1',
+        height: '100%',
+        padding: '0 13px',
+        marginRight: '13px',
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '22px',
+        fontFamily: "'Roboto', sans-serif", 
+        '& a': {
+            textDecoration: 'none',
+            color: 'black'
+        }
+    },
+    slider: {
+        width: '340px',
+        margin: '0 10px',
+        display: 'inline-block',
+        '& .rc-slider-track': {
+            background: 'transparent'
+        },
+        '& .rc-slider-rail': {
+            height: '8px'
+        },
+        '& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus, .rc-slider-handle:hover': {
+            backgroundColor: 'green',
+            outline: 'none',
+            border: '2px solid green',
+            boxShadow: 'none',
+            width: '13px',
+            height: '13px',
+            marginTop: '-3px'
+        }
+    },
+    selectContainer: {
+        marginLeft: 'auto',
+        marginRight: '1rem'
+    }
+}
 
 class Navbar extends Component {
     constructor(props) {
@@ -30,19 +78,19 @@ class Navbar extends Component {
     }
 
     render() {
-        const { showLevelSlider, level, changeLevel, defaultFormat } = this.props;
+        const { showLevelSlider, level, changeLevel, defaultFormat, classes } = this.props;
         const { format, open } = this.state;
 
         return (
-            <header className='Navbar'>
-                <div className="logo">
+            <header className={classes.Navbar}>
+                <div className={classes.logo}>
                     <Link to="/">reactcolorpicker</Link>
                 </div>
                 
                 {showLevelSlider && (
-                    <div className='slider-container'>
+                    <div>
                         <span>Level: {level}</span>
-                        <div className='slider'>
+                        <div className={classes.slider}>
                             <Slider 
                             defaultValue={level}
                             min={100}
@@ -54,7 +102,7 @@ class Navbar extends Component {
                     </div>
                 )}       
 
-                <div className='select-container'>
+                <div className={classes.selectContainer}>
                     <Select 
                         defaultValue={defaultFormat} 
                         format={format} 
@@ -89,4 +137,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
