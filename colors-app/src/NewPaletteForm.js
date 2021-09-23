@@ -81,13 +81,14 @@ class NewPaletteForm extends Component {
     this.state = {
       open: true,
       newColorName: "",
-      currentColor: "teal",
+      currentColor: "#FFFFF",
       colors: [],
     };
 
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleSavePalette = this.handleSavePalette.bind(this);
   }
 
   componentDidMount() {
@@ -120,6 +121,18 @@ class NewPaletteForm extends Component {
     });
   }
 
+  handleSavePalette() {
+    let paletteName = "New Palette";
+    const newPalette = {
+      paletteName: paletteName,
+      id: paletteName.toLowerCase().replace(/ /g, "-"),
+      colors: this.state.colors,
+    };
+
+    this.props.savePalette(newPalette);
+    this.props.history.push("/");
+  }
+
   handleTextChange(evt) {
     this.setState({ newColorName: evt.target.value });
   }
@@ -141,6 +154,7 @@ class NewPaletteForm extends Component {
         <CssBaseline />
         <AppBar
           position="fixed"
+          color="default"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -157,6 +171,13 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               Persistent drawer
             </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSavePalette}
+            >
+              Save Palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -215,7 +236,11 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           {this.state.colors.map((color) => (
-            <DraggableColorBox color={color.color} name={color.name} />
+            <DraggableColorBox
+              key={color.name}
+              color={color.color}
+              name={color.name}
+            />
           ))}
         </main>
       </div>
