@@ -83,7 +83,11 @@ class NewPaletteForm extends Component {
       newColorName: "",
       currentColor: "#FFFFF",
       newPaletteName: "",
-      colors: [],
+      colors: [
+        { name: "Red", color: "red" },
+        { name: "Blue", color: "blue" },
+        { name: "Green", color: "green" },
+      ],
     };
 
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
@@ -127,6 +131,12 @@ class NewPaletteForm extends Component {
     this.setState({
       colors: [...this.state.colors, newColor],
       newColorName: "",
+    });
+  }
+
+  deleteColor(colorName) {
+    this.setState({
+      colors: this.state.colors.filter((color) => color.name !== colorName),
     });
   }
 
@@ -260,6 +270,7 @@ class NewPaletteForm extends Component {
               key={color.name}
               color={color.color}
               name={color.name}
+              handleClick={() => this.deleteColor(color.name)}
             />
           ))}
         </main>
