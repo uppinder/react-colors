@@ -130,6 +130,12 @@ class NewPaletteForm extends Component {
     });
   }
 
+  deleteColor(colorName) {
+    this.setState({
+      colors: this.state.colors.filter((color) => color.name !== colorName),
+    });
+  }
+
   handleSavePalette() {
     let paletteName = this.state.newPaletteName;
     const newPalette = {
@@ -260,6 +266,7 @@ class NewPaletteForm extends Component {
               key={color.name}
               color={color.color}
               name={color.name}
+              handleClick={() => this.deleteColor(color.name)}
             />
           ))}
         </main>

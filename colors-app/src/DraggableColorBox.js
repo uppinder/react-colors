@@ -13,7 +13,7 @@ const styles = {
     marginBottom: "-3.5px",
     "&:hover svg": {
       color: "white",
-      transform: "scale(1.5)",
+      transform: "scale(1.2)",
     },
   },
   boxContent: {
@@ -41,17 +41,14 @@ class DraggableColorBox extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, color, name, handleClick } = this.props;
 
     return (
-      <div
-        style={{ backgroundColor: this.props.color }}
-        className={classes.root}
-      >
+      <div style={{ backgroundColor: color }} className={classes.root}>
         <div>
           <div className={classes.boxContent}>
-            <span className={classes.name}>{this.props.name}</span>
-            <DeleteIcon className={classes.deleteIcon} />
+            <span className={classes.name}>{name}</span>
+            <DeleteIcon className={classes.deleteIcon} onClick={handleClick} />
           </div>
         </div>
       </div>
