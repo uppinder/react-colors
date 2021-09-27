@@ -6,12 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 class PaletteSaveForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
       newPaletteName: "",
     };
 
@@ -31,20 +32,12 @@ class PaletteSaveForm extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
   render() {
-    const { handleSavePalette } = this.props;
-    const { open, newPaletteName } = this.state;
+    const { handleSavePalette, hideSaveForm } = this.props;
+    const { newPaletteName } = this.state;
     return (
       <div>
-        <Dialog open={open} onClose={this.handleClose} fullWidth>
+        <Dialog open={true} onClose={this.handleClose} fullWidth>
           <ValidatorForm onSubmit={() => handleSavePalette(newPaletteName)}>
             <DialogTitle>Choose a Palette Name</DialogTitle>
             <DialogContent>
@@ -66,12 +59,14 @@ class PaletteSaveForm extends Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose}>Cancel</Button>
+              <Button onClick={hideSaveForm}>Cancel</Button>
               <Button variant="contained" color="primary" type="submit">
                 Save Palette
               </Button>
             </DialogActions>
           </ValidatorForm>
+
+          <Picker />
         </Dialog>
       </div>
     );

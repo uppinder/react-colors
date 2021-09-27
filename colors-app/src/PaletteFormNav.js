@@ -59,10 +59,15 @@ class PaletteFormNav extends Component {
       isSaveFormShowing: false,
     };
     this.showSaveForm = this.showSaveForm.bind(this);
+    this.hideSaveForm = this.hideSaveForm.bind(this);
   }
 
   showSaveForm() {
     this.setState({ isSaveFormShowing: true });
+  }
+
+  hideSaveForm() {
+    this.setState({ isSaveFormShowing: false });
   }
 
   render() {
@@ -120,6 +125,7 @@ class PaletteFormNav extends Component {
           <PaletteSaveForm
             palettes={palettes}
             handleSavePalette={handleSavePalette}
+            hideSaveForm={this.hideSaveForm}
           />
         )}
       </div>
