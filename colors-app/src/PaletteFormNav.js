@@ -24,6 +24,7 @@ const styles = (theme) => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -40,9 +41,30 @@ const styles = (theme) => ({
   hide: {
     display: "none",
   },
+  navBtns: {
+    marginRight: "1rem",
+    "& a": {
+      textDecoration: "none",
+    },
+    "& button": {
+      margin: "0 0.25rem",
+    },
+  },
 });
 
 class PaletteFormNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSaveFormShowing: false,
+    };
+    this.showSaveForm = this.showSaveForm.bind(this);
+  }
+
+  showSaveForm() {
+    this.setState({ isSaveFormShowing: true });
+  }
+
   render() {
     const {
       classes,
@@ -51,6 +73,8 @@ class PaletteFormNav extends Component {
       handleSavePalette,
       handleDrawerOpen,
     } = this.props;
+
+    const { isSaveFormShowing } = this.state;
 
     return (
       <div className={classes.root}>
@@ -77,18 +101,27 @@ class PaletteFormNav extends Component {
           </Toolbar>
 
           <div className={classes.navBtns}>
-            <PaletteSaveForm
-              palettes={palettes}
-              handleSavePalette={handleSavePalette}
-            />
-
             <Link to="/">
               <Button variant="contained" color="secondary">
                 Go Back
               </Button>
             </Link>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.showSaveForm}
+            >
+              Save
+            </Button>
           </div>
         </AppBar>
+        {isSaveFormShowing && (
+          <PaletteSaveForm
+            palettes={palettes}
+            handleSavePalette={handleSavePalette}
+          />
+        )}
       </div>
     );
   }
