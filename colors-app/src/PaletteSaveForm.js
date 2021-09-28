@@ -13,10 +13,13 @@ class PaletteSaveForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      stage: "form",
       newPaletteName: "",
     };
 
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.showEmojiPicker = this.showEmojiPicker.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -28,17 +31,30 @@ class PaletteSaveForm extends Component {
     });
   }
 
+  showEmojiPicker() {
+    this.setState({ stage: "emoji" });
+  }
+
   handleTextChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
+  handleSubmit(emoji) {
+    this.props.handleSavePalette(this.state.newPaletteName, emoji.native);
+  }
+
   render() {
-    const { handleSavePalette, hideSaveForm } = this.props;
-    const { newPaletteName } = this.state;
+    const { hideSaveForm } = this.props;
+    const { newPaletteName, stage } = this.state;
     return (
       <div>
-        <Dialog open={true} onClose={this.handleClose} fullWidth>
-          <ValidatorForm onSubmit={() => handleSavePalette(newPaletteName)}>
+        <Dialog open={stage === "emoji"} onClose={hideSaveForm}>
+          <DialogTitle>Choose a Palette Emoji</DialogTitle>
+
+          <Picker onClick={this.handleSubmit} title="Pick a Palette Emoji" />
+        </Dialog>
+        <Dialog open={stage === "form"} onClose={hideSaveForm} fullWidth>
+          <ValidatorForm onSubmit={this.showEmojiPicker}>
             <DialogTitle>Choose a Palette Name</DialogTitle>
             <DialogContent>
               <DialogContentText>
@@ -61,12 +77,10 @@ class PaletteSaveForm extends Component {
             <DialogActions>
               <Button onClick={hideSaveForm}>Cancel</Button>
               <Button variant="contained" color="primary" type="submit">
-                Save Palette
+                Save
               </Button>
             </DialogActions>
           </ValidatorForm>
-
-          <Picker />
         </Dialog>
       </div>
     );
