@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 const styles = {
   root: {
     height: "25%",
@@ -12,6 +14,9 @@ const styles = {
       color: "white",
       transform: "scale(1.2)",
     },
+    [sizes.down("lg")]: { height: "20%", width: "25%" },
+    [sizes.down("md")]: { height: "10%", width: "50%" },
+    [sizes.down("xs")]: { height: "5%", width: "100%" },
   },
   boxContent: {
     position: "absolute",
