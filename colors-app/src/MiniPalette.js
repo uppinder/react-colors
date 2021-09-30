@@ -6,7 +6,7 @@ import styles from "./styles/MiniPaletteStyles";
 
 const deletePalette = (evt, props) => {
   evt.stopPropagation();
-  props.deletePalette(props.id);
+  props.handleDelete(props.id);
 };
 
 function MiniPalette(props) {
