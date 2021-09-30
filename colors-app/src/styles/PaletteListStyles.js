@@ -56,9 +56,9 @@ export default {
     width: "100%",
     boxSizing: "border-box",
     display: "grid",
-    alignSelf: "center",
+    paddingLeft: "",
     gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "1.5rem",
+    gridGap: "2.3rem",
     [sizes.down("sm")]: {
       gridTemplateColumns: "repeat(2, 50%)",
       gridGap: "1.5rem",
