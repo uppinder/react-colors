@@ -5,7 +5,7 @@ export default {
     borderRadius: "5px",
     padding: "0.5rem",
     position: "relative",
-    overflow: "hidden",
+    // overflow: "hidden",
     cursor: "pointer",
     "&:hover span": {
       opacity: 1,
@@ -23,8 +23,8 @@ export default {
     justifyContent: "space-between",
     alignItems: "center",
     margin: "0",
+    // paddingBottom: "0.5rem",
     color: "black",
-    paddingTop: "0.5rem",
     fontSize: "1rem",
     position: "relative",
   },
