@@ -7,10 +7,10 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import DraggableColorBoxList from "./DraggableColorBoxList";
-import PaletteFormNav from "./PaletteFormNav";
 import { arrayMoveImmutable as arrayMove } from "array-move";
 import ColorPickerForm from "./ColorPickerForm";
+import DraggableColorBoxList from "./DraggableColorBoxList";
+import PaletteFormNav from "./PaletteFormNav";
 import styles from "./styles/NewPaletteFormStyles";
 
 class NewPaletteForm extends Component {
