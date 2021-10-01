@@ -41,6 +41,7 @@ class PaletteSaveForm extends Component {
 
   handleSubmit(emoji) {
     this.props.handleSavePalette(this.state.newPaletteName, emoji.native);
+    this.setState({ stage: "" });
   }
 
   render() {
