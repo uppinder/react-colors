@@ -1,3 +1,4 @@
+import chroma from "chroma-js";
 import sizes from "./sizes";
 
 const styles = {
@@ -30,6 +31,10 @@ const styles = {
     fontSize: "0.8rem",
     display: "flex",
     justifyContent: "space-between",
+  },
+  colorName: {
+    color: (props) =>
+      chroma(props.color).luminance() <= 0.08 ? "white" : "black",
   },
   deleteIcon: {
     color: "black",
