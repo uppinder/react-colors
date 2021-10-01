@@ -61,10 +61,10 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={({ history }) => (
+                  render={(routeProps) => (
                     <Page>
                       <PaletteList
-                        history={history}
+                        {...routeProps}
                         palettes={this.state.palettes}
                         deletePalette={this.deletePalette}
                       />
@@ -107,6 +107,17 @@ class App extends Component {
                         palette={generatePalette(
                           this.findPalette(routeProps.match.params.paletteId)
                         )}
+                      />
+                    </Page>
+                  )}
+                />
+                <Route
+                  render={(routeProps) => (
+                    <Page>
+                      <PaletteList
+                        {...routeProps}
+                        palettes={this.state.palettes}
+                        deletePalette={this.deletePalette}
                       />
                     </Page>
                   )}
